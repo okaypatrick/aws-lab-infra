@@ -1,0 +1,7 @@
+resource "aws_key_pair" "pg" {
+
+    key_name = "pg_ssh_key"
+    public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtsXnv8LhThR8ZT4PGIHdT+t4nw/YCvzeFu0s3aDxuHPvvRtVWlUmFm7L6JB2SyeQtf6kOzzIEOk2sX0r4whUieV8pC8JY9sX2FjdL5buAmMAkpnieijWyHOMOM2XopgbF8qmWhvHSqm3zgag7CXDl5IhJLvlrwWrUriWKEnQ/Wl7/Yf8DE5ARjfVOGftisnDuNdx0oabkOlZ8uwb+wfZziSTkhC3Cs/KlnY6x5L8rEZgcKRCJtI6FKNRJO/bqK/NhTBIIjzHrS6Fd0mBNw0IJ4HD4z3rYBkDyfO4H08BcfiGE7KHkJpxS5iWI3DdJVY8m2sI9lmUpAjd5JYht32wybhDbt6yprhlc/mPOOYIVrvJTOylpvJGYEeVtkMpPgEhXu+IwdITdFQ8CY+jJAtWefu6UnDnLUVNsESE/jf0JsO42ewYlk87MhdPX3chdTHjs+nL9TQR9ee9nh5I8cyHfXpzXW3LF/khgBerVaCo8KbB7FjNdDG6i52p5rxIqZBU= pgaw@Patricks-MacBook-Pro.local"
+
+
+}
