@@ -57,3 +57,19 @@ output "config_map_aws_auth" {
 output "kubeconfig" {
   value = local.kubeconfig
 }
+
+output "efs-name" {
+
+  value = aws_efs_file_system.jenkins-eks-efs.tags 
+}
+
+output "mount_target_subnet_ids" {
+
+  value = aws_efs_mount_target.jenkins-efs-mt[*].id
+
+}
+
+output "efs_access_point_id" {
+
+  value = aws_efs_access_point.jenkins-efs-ap.id 
+}
