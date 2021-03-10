@@ -1,3 +1,4 @@
+
 terraform {
 
   backend "s3" {
@@ -14,5 +15,5 @@ terraform {
 
 provider "aws" {
   profile = "aws-lab-tf"
-  region  = "us-west-1"
+  region  = var.aws_region
 }

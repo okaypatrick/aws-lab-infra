@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system
+data:
+  mapRoles: |
+    - rolearn: arn:aws:iam::981190089147:role/terraform-eks-sbx-node
+      username: system:node:{{EC2PrivateDNSName}}
+      groups:
+        - system:bootstrappers
+        - system:nodes
+  mapUsers: |
+    - rolearn: arn:aws:iam::981190089147:user/stewie0x47
+      username: stewie0x47
+      groups:
+      - system:masters
