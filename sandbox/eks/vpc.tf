@@ -7,12 +7,18 @@
 #
 
 resource "aws_vpc" "sbx" {
+
   cidr_block = "10.0.0.0/16"
 
   tags = map(
-    "Name", "terraform-eks-sbx-node",
+    "Name", "eks-sbx-vpc",
     "kubernetes.io/cluster/${var.cluster-name}", "shared",
   )
+
+  //need these two dns settings to true in order to mount EFS.
+  enable_dns_hostnames = true
+  enable_dns_support = true
+
 }
 
 resource "aws_subnet" "sbx" {
@@ -24,7 +30,7 @@ resource "aws_subnet" "sbx" {
   vpc_id                  = aws_vpc.sbx.id
 
   tags = map(
-    "Name", "terraform-eks-sbx-node",
+    "Name", "eks-sbx-subnet-${count.index}",
     "kubernetes.io/cluster/${var.cluster-name}", "shared",
   )
 }

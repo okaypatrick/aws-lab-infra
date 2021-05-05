@@ -9,3 +9,9 @@ resource "aws_iam_user" "eksadmin" {
     name = "eks-admin"
     path = "/"
 }
+
+resource "aws_iam_user" "dle" {
+
+    name = "dle"
+    path = "/"
+}

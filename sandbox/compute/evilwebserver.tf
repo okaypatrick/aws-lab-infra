@@ -14,5 +14,11 @@ resource "aws_instance" "evilwebserver" {
 
     user_data = "${file("scripts/startwebserver.sh")}"
 
+    tags = {
+
+      Name = "my-hacking-webserver"
+
+    }
+
 
 }

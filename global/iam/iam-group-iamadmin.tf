@@ -1,10 +1,12 @@
 locals {
   iam_admin_users = [
     aws_iam_user.test1.name,
+    aws_iam_user.dle.name,
   ]
 
   eks_admin_users = [
     aws_iam_user.eksadmin.name,
+    aws_iam_user.dle.name,
   ]
 }
 
@@ -13,7 +15,7 @@ resource "aws_iam_group" "iam_admins" {
 
     name = "IAM-Administrators"
     path = "/"
-
+ 
 }
 
 resource "aws_iam_group" "eks_admins" {

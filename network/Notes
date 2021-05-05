@@ -1,0 +1,52 @@
+
+1. Get your 'admin' user password by running:
+  printf $(kubectl get secret --namespace default jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
+2. Get the Jenkins URL to visit by running these commands in the same shell:
+  NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+        You can watch the status of by running 'kubectl get svc --namespace default -w jenkins'
+  export SERVICE_IP=$(kubectl get svc --namespace default jenkins --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
+  echo http://$SERVICE_IP:80/login
+
+3. Login with the password from step 1 and the username: admin
+
+4. Use Jenkins Configuration as Code by specifying configScripts in your values.yaml file, see documentation: http:///configuration-as-code and examples: https://github.com/jenkinsci/configuration-as-code-plugin/tree/master/demos
+
+For more information on running Jenkins on Kubernetes, visit:
+https://cloud.google.com/solutions/jenkins-on-container-engine
+For more information about Jenkins Configuration as Code, visit:
+https://jenkins.io/projects/jcasc/
+
+
+
+--------------
+printf $(kubectl get service jenkins -o jsonpath="{.status.loadBalancer.ingress[].hostname}");echo
+
+
+
+export SERVICE_IP=$(kubectl get svc --namespace default jenkins --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
+
+
+----
+helm install bitnami-jenkins bitnami/jenkins --set rbac.create=true,master.servicePort=80,master.serviceType=LoadBalancer,persistence.existingClaim=efs-claim
+
+NAME: bitnami-jenkins
+LAST DEPLOYED: Mon Mar 15 09:17:38 2021
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+** Please be patient while the chart is being deployed **
+
+1. Get the Jenkins URL by running:
+
+** Please ensure an external IP is associated to the bitnami-jenkins service before proceeding **
+** Watch the status using: kubectl get svc --namespace default -w bitnami-jenkins **
+
+  export SERVICE_IP=$(kubectl get svc --namespace default bitnami-jenkins --template "{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}")
+  echo "Jenkins URL: http://$SERVICE_IP/"
+
+2. Login with the following credentials
+
+  echo Username: user
+  echo Password: $(kubectl get secret --namespace default bitnami-jenkins -o jsonpath="{.data.jenkins-password}" | base64 --decode)
