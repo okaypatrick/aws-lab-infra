@@ -50,7 +50,9 @@ resource "aws_efs_access_point" "jenkins-efs-ap" {
     }
 
     root_directory {
-        path = "/jenkins"
+        
+        #path needs to have the / at the beginning and no / at the end
+        path = "/opt/bitnami/jenkins/jenkins_home" 
         creation_info {
         owner_gid   = 1000
         owner_uid   = 1000

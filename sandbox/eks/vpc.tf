@@ -7,12 +7,18 @@
 #
 
 resource "aws_vpc" "sbx" {
+
   cidr_block = "10.0.0.0/16"
 
   tags = map(
     "Name", "eks-sbx-vpc",
     "kubernetes.io/cluster/${var.cluster-name}", "shared",
   )
+
+  //need these two dns settings to true in order to mount EFS.
+  enable_dns_hostnames = true
+  enable_dns_support = true
+
 }
 
 resource "aws_subnet" "sbx" {

@@ -63,6 +63,12 @@ output "efs-name" {
   value = aws_efs_file_system.jenkins-eks-efs.tags 
 }
 
+output "efs-id" {
+
+  value = aws_efs_file_system.jenkins-eks-efs.id 
+
+}
+
 output "mount_target_subnet_ids" {
 
   value = aws_efs_mount_target.jenkins-efs-mt[*].id
@@ -72,4 +78,30 @@ output "mount_target_subnet_ids" {
 output "efs_access_point_id" {
 
   value = aws_efs_access_point.jenkins-efs-ap.id 
+}
+
+output "aws_vpc_cidr" {
+
+  value = aws_vpc.sbx.cidr_block
+}
+
+
+//These outputs are for temporary jumpbox used for troubleshooting.
+
+output "aws_eks_sandbox_subnet_id" {
+
+  value = aws_subnet.sbx[*].id 
+
+}
+
+output "eks_sandbox_sg_ingress_allow_ssh_id" {
+
+  value = aws_security_group.allow_ingress_ssh.id 
+
+}
+
+output "eks_sandbox_sg_egress_allow_all_id" {
+
+  value = aws_security_group.allow_egress_all.id 
+
 }

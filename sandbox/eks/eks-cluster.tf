@@ -70,6 +70,11 @@ resource "aws_eks_cluster" "sbx" {
     subnet_ids         = aws_subnet.sbx[*].id
   }
 
+/*   kubernetes_network_config {
+
+    service_ipv4_cidr = "10.0.0.0/16"
+  } */
+
   depends_on = [
     aws_iam_role_policy_attachment.sbx-cluster-AmazonEKSClusterPolicy,
     aws_iam_role_policy_attachment.sbx-cluster-AmazonEKSVPCResourceController,
